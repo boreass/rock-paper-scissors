@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Piedra, papel o tijera</title>
+    </head>
+    <body>
+        <script>
+
+            // La función computerPlay() genera y devuelve aleatoriamente la elección del computador.
+
+            function computerPlay() {
+                let gameOptions = ["Piedra", "Papel", "Tijera"];
+                let randomIndex = Math.floor(Math.random() * gameOptions.length);
+                let randomOption = gameOptions[randomIndex];
+
+                return randomOption;
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                let player = playerSelection.toLowerCase();
+                let computer = computerSelection.toLowerCase();
+
+                if ((player === "piedra" && computer === "tijera") || (player === "papel" && computer === "piedra") || (player === "tijera" && computer === "papel"))  {
+                    return `Ganaste, ${player} le gana a ${computer}.`;
+                } else if ((player === "piedra" && computer === "papel") || (player === "papel" && computer === "tijera") || (player === "tijera" && computer === "piedra")) {
+                    return `Perdiste, ${computer} le gana a ${player}.`;
+                } else if (player ===  computer) {
+                    return `Empate.`;
+                }
+            }
+
+            function game() {
+
+            }
+
+            const computerSelection = computerPlay();
+            const playerSelection = prompt("¿Piedra, papel o tijera?");
+
+            console.log(playRound(playerSelection, computerSelection));
+        </script>
+    </body>
+</html>

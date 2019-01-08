@@ -16,30 +16,67 @@
 
                 return randomOption;
             }
+            
+            /* La función playRound() devuelve el resultado del enfrentamiento. Tiene una opción 
+            en caso de que los argumentos no sean valores válidos. */
 
-            function playRound(playerSelection, computerSelection) {
+            function playRound() {
+                let computerSelection = computerPlay();
+                let playerSelection = prompt("¿Piedra, papel o tijera?");
                 let player = playerSelection.toLowerCase();
                 let computer = computerSelection.toLowerCase();
 
                 if ((player === "piedra" && computer === "tijera") || (player === "papel" && computer === "piedra") || (player === "tijera" && computer === "papel"))  {
+                    alert(`Ganaste, ${player} le gana a ${computer}.`);
                     return `Ganaste, ${player} le gana a ${computer}.`;
                 } else if ((player === "piedra" && computer === "papel") || (player === "papel" && computer === "tijera") || (player === "tijera" && computer === "piedra")) {
+                    alert(`Perdiste, ${computer} le gana a ${player}.`);
                     return `Perdiste, ${computer} le gana a ${player}.`;
                 } else if (player ===  computer) {
+                    alert(`Empate.`);
                     return `Empate.`;
                 } else {
-                    return `Ingresa una opción válida.`
+                    alert(`Ingresa una opción válida.`);
+                    return `Ingresa una opción válida.`;
+                }
+            }
+
+            function countPoints() {
+                let result = playRound();
+                
+                if (result.charAt(0) === "G") {
+                    return playerPoints += 1;
+                } else if (result.charAt(0) === "P") {
+                    return computerPoints += 1;
+                } else {
+                    return playerPoints += 0;
                 }
             }
 
             function game() {
 
+                countPoints();
+                countPoints();
+                countPoints();
+                countPoints();
+                countPoints();
+            
+                
+                if (playerPoints > computerPoints) {
+                    return `Felicitaciones, ${name}. Ganaste ${playerPoints} a ${computerPoints}.`;
+                } else if (playerPoints < computerPoints) {
+                    return `Perdiste ${computerPoints} a ${playerPoints}. Sigue intentando, ${name}.`;
+                } else if (playerPoints === computerPoints) {
+                    return `Empataste ${computerPoints} a ${playerPoints}. Sigue intentando, ${name}.`;
+                }
             }
 
-            const computerSelection = computerPlay();
-            const playerSelection = prompt("¿Piedra, papel o tijera?");
+            let name = prompt("¿Cómo te llamas?");
+            let computerPoints = 0;
+            let playerPoints = 0;
 
-            alert(playRound(playerSelection, computerSelection));
+            alert(game());
+
         </script>
     </body>
 </html>
